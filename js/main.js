@@ -156,6 +156,12 @@ function initializeInteractiveMap() {
             title: 'Library',
             description: 'A quiet place for study and research.',
             iconUrl: 'images/LitLogo.png'
+        },
+        {
+            position: [28.8530, 76.5418],
+            title: 'Campus Doctor',
+            description: 'Timings: 11 AM - 1 PM & 2 PM - 4 PM',
+            iconUrl: 'images/ambulance.png'
         }
     ];
 
