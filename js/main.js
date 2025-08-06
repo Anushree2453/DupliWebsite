@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Check if the map container exists on the page
+    const mapContainer = document.getElementById('map');
+    if (mapContainer) {
+        // Initialize the Leaflet map
+        initializeInteractiveMap();
+    }
+
+    // --- The rest of your existing main.js functionality ---
+
     // Slider functionality
     let currentSlide = 0;
     const slider = document.querySelector('.slider');
@@ -56,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to fetch and display weather
     function fetchWeather() {
-        // Coordinates for Rohtak, Haryana
         const latitude = 28.90;
         const longitude = 76.61;
         const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=relativehumidity_2m,apparent_temperature`;
@@ -71,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('weather-temp').textContent = `${Math.round(weather.temperature)}°C`;
                     document.getElementById('weather-wind').textContent = `${weather.windspeed} km/h`;
                     
-                    // Find the current hour's data for humidity and feels like temperature
                     const now = new Date();
                     const currentHourISO = now.toISOString().slice(0, 14) + "00";
                     const timeIndex = hourly.time.findIndex(t => t.startsWith(currentHourISO.slice(0,13)));
@@ -107,8 +114,76 @@ document.addEventListener('DOMContentLoaded', function () {
         return weatherCodes[code] || "Unknown";
     }
 
-    // Fetch weather on page load
     fetchWeather();
-    // Refresh weather every 30 minutes (1800000 milliseconds)
     setInterval(fetchWeather, 1800000);
 });
+
+
+function initializeInteractiveMap() {
+    // 1. Define the central coordinates for your map.
+    const iimRohtakCenter = [28.85339, 76.54220]; // Leaflet uses an array [lat, lng]
+
+    // 2. Create a new map instance, centered on IIM Rohtak.
+    const map = L.map('map').setView(iimRohtakCenter, 16);
+
+    // 3. Add the map background tiles from OpenStreetMap (a free map provider).
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // 4. Define the locations for your interactive icons.
+    const locations = [
+        {
+            position: [28.8540, 76.5425],
+            title: 'Academic Block',
+            description: 'The main building for all lectures and academic activities.',
+            iconUrl: 'images/ACLogo.png' 
+        },
+        {
+            position: [28.8525, 76.5440],
+            title: 'Athletics & Sports',
+            description: 'Home to the sports fields, courts, and gym.',
+            iconUrl: 'images/AthLogo.png'
+        },
+        {
+            position: [28.8520, 76.5410],
+            title: 'Student Hostels',
+            description: 'Residential blocks for IPM students.',
+            iconUrl: 'images/RiwLogo.png'
+        },
+        {
+            position: [28.8548, 76.5415],
+            title: 'Library',
+            description: 'A quiet place for study and research.',
+            iconUrl: 'images/LitLogo.png'
+        }
+    ];
+
+    // 5. Loop through locations and create a marker for each one.
+    locations.forEach(location => {
+        // Create a custom icon object for each marker.
+        const customIcon = L.icon({
+            iconUrl: location.iconUrl,
+            iconSize: [50, 50], // Size of the icon
+            iconAnchor: [25, 50], // Point of the icon which will correspond to marker's location
+            popupAnchor: [0, -50] // Point from which the popup should open relative to the iconAnchor
+        });
+
+        // Create the marker with the custom icon.
+        const marker = L.marker(location.position, { icon: customIcon }).addTo(map);
+
+        // Create the HTML content for the popup.
+        const popupContent = `<h3>${location.title}</h3><p>${location.description}</p>`;
+        
+        // Bind the popup to the marker.
+        marker.bindPopup(popupContent);
+
+        // Add event listeners for hover functionality.
+        marker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
+    });
+}
