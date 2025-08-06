@@ -134,30 +134,6 @@ function initializeInteractiveMap() {
     // 4. Define the locations for your interactive icons.
     const locations = [
         {
-            position: [28.8540, 76.5425],
-            title: 'Academic Block',
-            description: 'The main building for all lectures and academic activities.',
-            iconUrl: 'images/ACLogo.png' 
-        },
-        {
-            position: [28.8525, 76.5440],
-            title: 'Athletics & Sports',
-            description: 'Home to the sports fields, courts, and gym.',
-            iconUrl: 'images/AthLogo.png'
-        },
-        {
-            position: [28.8520, 76.5410],
-            title: 'Student Hostels',
-            description: 'Residential blocks for IPM students.',
-            iconUrl: 'images/RiwLogo.png'
-        },
-        {
-            position: [28.8548, 76.5415],
-            title: 'Library',
-            description: 'A quiet place for study and research.',
-            iconUrl: 'images/LitLogo.png'
-        },
-        {
             position: [28.8530, 76.5418],
             title: 'Campus Doctor',
             description: 'Timings: 11 AM - 1 PM & 2 PM - 4 PM',
@@ -170,9 +146,9 @@ function initializeInteractiveMap() {
         // Create a custom icon object for each marker.
         const customIcon = L.icon({
             iconUrl: location.iconUrl,
-            iconSize: [50, 50], // Size of the icon
-            iconAnchor: [25, 50], // Point of the icon which will correspond to marker's location
-            popupAnchor: [0, -50] // Point from which the popup should open relative to the iconAnchor
+            iconSize: [80, 80], // Size of the icon
+            iconAnchor: [40, 80], // Point of the icon which will correspond to marker's location
+            popupAnchor: [0, -80] // Point from which the popup should open relative to the iconAnchor
         });
 
         // Create the marker with the custom icon.
