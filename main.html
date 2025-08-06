@@ -8,11 +8,42 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/Campusjilogo.jpg" type="image/x-icon" style="border-radius: 50%;">
+    
+    <!-- Add Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+    <style>
+        /* Style for the map container */
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 15px;
+            border: 2px solid #BAD6EB;
+        }
+        /* Optional: Style for the popups */
+        .leaflet-popup-content-wrapper {
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(8, 31, 92, 0.15);
+        }
+        .leaflet-popup-content {
+            font-family: Georgia, serif; 
+            color: #081F5C;
+        }
+        .leaflet-popup-content h3 {
+            margin: 0 0 5px 0;
+        }
+        .leaflet-popup-content p {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
    <div id="header-container"></div>
 
     <main class="main-content">
+        <!-- The slider and other sections remain the same -->
         <div class="slider-container">
             <div class="slider">
                 <div class="slide">
@@ -123,16 +154,9 @@
         </div>
 
         <div class="map-section">
-            <h2>Map of IIM Rohtak</h2>
-            <div class="map-placeholder">
-                <iframe
-                    width="100%"
-                    height="500"
-                    frameborder="0" style="border:0"
-                    src="https://maps.google.com/maps?q=28.853390835718354,76.54220669325325&hl=es;z=14&amp;output=embed"
-                    allowfullscreen>
-                </iframe>
-            </div>
+            <h2>Interactive Map of IIM Rohtak</h2>
+            <!-- This div will hold our Leaflet Map -->
+            <div id="map"></div>
         </div>
 
         <div class="faq-section">
@@ -185,6 +209,12 @@
         </div>
     </main>
 
+    <!-- Add Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    
+    <!-- Load your custom JavaScript file -->
     <script src="js/main.js"></script>
 </body>
 </html>
