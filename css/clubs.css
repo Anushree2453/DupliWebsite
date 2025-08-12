@@ -46,7 +46,7 @@ body {
 }
 
 .cards-grid {
-    /* Updated this line to display two columns */
+    /* Updated this line to force two columns on screens wider than 768px */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
