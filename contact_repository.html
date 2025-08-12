@@ -1,154 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TRVKNL4W');</script>
-<!-- End Google Tag Manager -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Repository - CampusJi</title>
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/contact.css">
-<link rel="icon" href="images/Campusjilogo.webp" type="image/x-icon" style="border-radius: 50%;">
-<style>
-    .star-icon {
-        cursor: pointer;
-        margin-left: 8px;
-        font-size: 1.2em;
-        color: #cccccc; /* Default empty star color */
-        transition: color 0.2s ease-in-out;
-        user-select: none; /* Prevents text selection on click */
-    }
-    .star-icon:hover {
-        color: #aaaaaa;
-    }
-    .star-icon.starred {
-        color: #ffc107; /* Gold color for a filled star */
-    }
-    /* Style for the new filter button */
-    .filter-button {
-        padding: 10px 15px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 1em;
-        margin-left: 8px;
-        transition: background-color 0.2s;
-    }
-    .filter-button:hover {
-        background-color: #0056b3;
-    }
-    /* Style for when the filter is active */
-    .filter-button.active {
-        background-color: #c43a3a; /* A red color to indicate "Show All" state */
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Repository</title>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRVKNL4W"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<div id="header-container"></div>
-<main class="main-content">
-<h1 class="page-title">Contact Repository</h1>
-<div class="search-section">
-<div class="search-container">
-<input type="text" id="searchInput" class="search-input" placeholder="Search by name, profession, or contact number...">
-<button class="search-button" id="searchButton">Search</button>
-<button class="clear-search" id="clearButton">Clear</button>
-<button class="filter-button" id="showStarredButton">Show Starred ★</button>
-</div>
-</div>
-<div class="table-section">
-<div class="results-counter" id="resultsCounter">Showing all 33 contacts</div>
-<table class="contact-table">
-<thead>
-<tr>
-<th class="category-header" colspan="4">Authorities</th>
-</tr>
-<tr>
-<th class="table-header">Name</th>
-<th class="table-header">Profession/Role</th>
-<th class="table-header">Contact Number</th>
-</tr>
-</thead>
-<tbody id="authoritiesSection">
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Dushyanth Reddy <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Assistant Manager Programme</td><td class="contact-cell contact-number">01262-228539/ +917082001615</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr. Suresh Khatri <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Administrative Officer</td><td class="contact-cell contact-number">01262-228606</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Dr. Peeyush Pandey <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Co-Chairperson, IPM</td><td class="contact-cell contact-number">01262-228526</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Dr. Abhishek Singh <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Co-Chairperson, IPM</td><td class="contact-cell contact-number">01262-228624</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr. Pushkar Kashyap <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Asst. Manager Admissions and Administration</td><td class="contact-cell contact-number">01262-228527</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Dr. Deepika Jain <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Co-Chairperson Students Affairs</td><td class="contact-cell contact-number">01262-228557</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Dr. Akanksha Saxena <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Co-Chairperson Students Affairs</td><td class="contact-cell contact-number">01262-228618</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr. Deepak Rohilla <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">HSA Officer</td><td class="contact-cell contact-number">+917082001632</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr. Kamal Kishore Joshi <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Librarian</td><td class="contact-cell contact-number">02162-228509</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Dr Koustab Ghosh <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Dean Academics</td><td class="contact-cell contact-number">01262-228525</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Dr S K Pandey <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Dean (REE)</td><td class="contact-cell contact-number">01262-274054</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr Parikshit R Java <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Senior Administrative Officer</td><td class="contact-cell contact-number">01262-228600</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr Sachin <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Office Assistant</td><td class="contact-cell contact-number">01262-228503/+917082001603</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr Priyanka Darji <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">FA & CAO</td><td class="contact-cell contact-number">01262-274053</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr Kamlesh Pal <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">System Administrator</td><td class="contact-cell contact-number">01262-228510</td></tr>
-<tr class="contact-row" data-category="authorities"><td class="contact-cell contact-name">Mr Dharmesh Bajpai <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Programmer</td><td class="contact-cell contact-number">01262-228542</td></tr>
-</tbody>
-<thead>
-<tr>
-<th class="category-header" colspan="3">Campus Services</th>
-</tr>
-<tr>
-<th class="table-header">Name</th>
-<th class="table-header">Profession/Role</th>
-<th class="table-header">Contact Number</th>
-</tr>
-</thead>
-<tbody id="campusServicesSection">
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">Mr. Narayan Singh Rathi <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Medical Emergency</td><td class="contact-cell contact-number">+917082001632</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">Ambulance Main Gate Security <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Operating hours: 9:00 pm to 6:00 am</td><td class="contact-cell contact-number">01262-228561</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">Health Supervisor <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Health Supervisor</td><td class="contact-cell contact-number">+917082118100</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">Mr. Rishabh <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Maintenance Junior Engineer (Electrical)</td><td class="contact-cell contact-number">+919050387213</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">Mr. Pratham <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Maintenance Junior Engineer (Civil)</td><td class="contact-cell contact-number">+918950258508</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">Oshan Rai <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Student Council President</td><td class="contact-cell contact-number">+917354236136</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">Shashwat Singh <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Student Council Vice President</td><td class="contact-cell contact-number">+918354899928</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">RMO (Male) <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Kainos Super Speciality Hospital, Monday to Saturday, 1:00 pm to 5:00 pm, Student Activity Centre</td><td class="contact-cell contact-number">-</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">RMO (Feamale) <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Holy Heart Hospital, Monday to Saturday, 10:00 am to 12:00 pm, Student Activity Centre</td><td class="contact-cell contact-number">-</td></tr>
-<tr class="contact-row" data-category="campus-services"><td class="contact-cell contact-name">Laundry <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Laundry Service</td><td class="contact-cell contact-number">+919034663026</td></tr>
-</tbody>
-<thead>
-<tr>
-<th class="category-header" colspan="3">Local Services</th>
-</tr>
-<tr>
-<th class="table-header">Name</th>
-<th class="table-header">Profession/Role</th>
-<th class="table-header">Contact Number</th>
-</tr>
-</thead>
-<tbody id="localServicesSection">
-<tr class="contact-row" data-category="local-services"><td class="contact-cell contact-name">Rahul <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Delivery Man</td><td class="contact-cell contact-number">+917494873259</td></tr>
-<tr class="contact-row" data-category="local-services"><td class="contact-cell contact-name">Azad <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Local Delivery Man</td><td class="contact-cell contact-number">+919315421193</td></tr>
-<tr class="contact-row" data-category="local-services"><td class="contact-cell contact-name">Dhaba 24 <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Restaurant</td><td class="contact-cell contact-number">+918813078398</td></tr>
-<tr class="contact-row" data-category="local-services"><td class="contact-cell contact-name">Mannat Dhaba <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Restaurant</td><td class="contact-cell contact-number">+919254323030</td></tr>
-<tr class="contact-row" data-category="local-services"><td class="contact-cell contact-name">Laptop Repair <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Laptop Repair Service</td><td class="contact-cell contact-number">+919808888877</td></tr>
-<tr class="contact-row" data-category="local-services"><td class="contact-cell contact-name">Laptop Repair <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Laptop Repair Service</td><td class="contact-cell contact-number">+919896030740</td></tr>
-<tr class="contact-row" data-category="local-services"><td class="contact-cell contact-name">Laptop Repair <span class="star-icon">☆</span></td><td class="contact-cell contact-profession">Laptop Repair Service</td><td class="contact-cell contact-number">+919653575260</td></tr>
-</tbody>
-</table>
-<div class="no-results" id="noResults" style="display:none">
-<div class="no-results-icon">🔍</div>
-<div>No contacts found matching your search criteria.</div>
-<div class="no-results-subtext">Try searching with different keywords or clear your search to view all contacts.</div>
-</div>
-</div>
-</main>
-<script src="js/auth.js"></script>
-<script src="js/common.js"></script>
-<script src="js/contact.js"></script>
-    <div id="footer-container"></div>
+
+    <header class="header">
+        </header>
+
+    <main class="main-content">
+        <h1 class="page-title">Contact Repository</h1>
+
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search by name, role, or number...">
+                <button id="searchButton" class="search-button">Search</button>
+                <button id="clearSearch" class="clear-search">Clear</button>
+                <button id="filterButton" class="filter-button">Filter by Starred</button>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <div id="resultsCounter" class="results-counter"></div>
+
+            <table class="contact-table">
+                <thead>
+                    <tr class="category-header">
+                        <th colspan="3">Authorities</th>
+                    </tr>
+                    <tr class="table-header">
+                        <th>Name</th>
+                        <th>Profession / Role</th>
+                        <th>Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="contact-row" data-category="authorities">
+                        <td class="contact-cell contact-name">
+                            <span>Dushyanth Reddy</span>
+                            <span class="star-icon">☆</span>
+                        </td>
+                        <td class="contact-cell contact-profession">Assistant Manager Programme</td>
+                        <td class="contact-cell contact-number">01262-228539/ +917082001615</td>
+                    </tr>
+                    <tr class="contact-row" data-category="authorities">
+                        <td class="contact-cell contact-name">
+                            <span>Manoj Kumar</span>
+                            <span class="star-icon">☆</span>
+                        </td>
+                        <td class="contact-cell contact-profession">Manager</td>
+                        <td class="contact-cell contact-number">01262-228539</td>
+                    </tr>
+                    <tr class="contact-row" data-category="authorities">
+                        <td class="contact-cell contact-name">
+                            <span>Nandini Singh</span>
+                            <span class="star-icon">☆</span>
+                        </td>
+                        <td class="contact-cell contact-profession">Senior Programme Manager</td>
+                        <td class="contact-cell contact-number">+917082001615</td>
+                    </tr>
+                    <tr class="category-header">
+                        <th colspan="3">Management</th>
+                    </tr>
+                    <tr class="table-header">
+                        <th>Name</th>
+                        <th>Profession / Role</th>
+                        <th>Contact</th>
+                    </tr>
+                    <tr class="contact-row" data-category="management">
+                        <td class="contact-cell contact-name">
+                            <span>Rahul Sharma</span>
+                            <span class="star-icon">☆</span>
+                        </td>
+                        <td class="contact-cell contact-profession">CEO</td>
+                        <td class="contact-cell contact-number">01234-567890</td>
+                    </tr>
+                    </tbody>
+            </table>
+
+            <div id="noResults" class="no-results">
+                <div class="no-results-icon">
+                    &#128546;
+                </div>
+                <h3>No contacts found matching your search.</h3>
+                <p class="no-results-subtext">Please try a different keyword or clear your filters.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/contact.js"></script>
+
 </body>
 </html>
