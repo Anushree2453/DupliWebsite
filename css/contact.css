@@ -1,4 +1,4 @@
-/* General Layout */
+/* Update the existing rules with these changes */
 .main-content {
     max-width: 1400px;
     padding-top: 5rem;
@@ -23,7 +23,7 @@
 
 .search-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows items to wrap on small screens */
     gap: 1rem;
     align-items: center;
     max-width: 600px;
@@ -32,7 +32,7 @@
 
 .search-input {
     flex: 1;
-    min-width: 200px;
+    min-width: 200px; /* Ensures the input is not too small */
     padding: 0.875rem 1.25rem;
     border: 2px solid #BAD6EB;
     border-radius: 10px;
@@ -59,7 +59,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    flex-grow: 1;
+    flex-grow: 1; /* Allows buttons to grow and fill space */
 }
 
 .search-button {
@@ -83,14 +83,14 @@
 }
 
 .filter-button {
-    background-color: #7096D1;
+    background-color: #7096D1; /* A consistent blue for the filter button */
     border: 2px solid transparent;
 }
 .filter-button:hover {
     background-color: #334EAC;
 }
 .filter-button.active {
-    background-color: #d9534f;
+    background-color: #d9534f; /* Red for active state */
     border-color: #d9534f;
     color: white;
 }
@@ -195,7 +195,7 @@
     border-bottom: 2px solid #EDF1F6;
 }
 
-/* Responsive Design */
+/* Responsive Design for Mobile */
 @media (max-width: 768px) {
     .page-title {
         font-size: 2rem;
@@ -205,7 +205,7 @@
         flex-direction: column;
         align-items: stretch;
     }
-
+    
     .search-input,
     .search-button,
     .clear-search,
@@ -213,7 +213,7 @@
         width: 100%;
         text-align: center;
     }
-
+    
     .filter-button {
         margin-left: 0;
     }
@@ -235,7 +235,7 @@
         margin-bottom: 1rem;
         padding: 1rem;
     }
-
+    
     .contact-row:hover {
         transform: none;
     }
@@ -260,7 +260,7 @@
         font-weight: bold;
         color: #081F5C;
     }
-
+    
     .contact-cell.contact-name {
         display: flex;
         align-items: center;
@@ -270,27 +270,11 @@
         margin-left: auto;
         font-size: 1.5em;
     }
-
+    
     .category-header {
         font-size: 1.1rem;
         padding: 1rem;
         border-radius: 12px 12px 0 0;
         margin-bottom: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .contact-cell {
-        font-size: 0.9rem;
-    }
-    .contact-cell::before {
-        font-size: 0.9rem;
-    }
-    .search-input,
-    .search-button,
-    .clear-search,
-    .filter-button {
-        font-size: 0.9rem;
-        padding: 0.75rem;
     }
 }
