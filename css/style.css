@@ -156,6 +156,7 @@
 
 .column-card h3 {
     color: #081F5C;
+    margin-bottom: 1rem;
     font-size: 1.3rem;
     border-bottom: 3px solid #7096D1;
     padding-bottom: 0.5rem;
@@ -163,16 +164,14 @@
 
 .mess-menu-items {
     list-style: none;
+    margin-top: 0;
+    padding-left: 0;
 }
 
 .mess-menu-items li {
     padding: 0.5rem 0;
     border-bottom: 1px solid #EDF1F6;
     color: #334EAC;
-}
-
-.mess-menu-items li:first-child {
-    padding-top: 0;
 }
 
 .bulletin-item {
