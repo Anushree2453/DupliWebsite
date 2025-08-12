@@ -1,125 +1,125 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ---ELEMENT REFERENCES ---
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
-    const clearButton = document.getElementById('clearButton');
-    const showStarredButton = document.getElementById('showStarredButton');
-    const allRows = document.querySelectorAll('.contact-row');
+    const clearSearchButton = document.getElementById('clearSearch');
+    const filterButton = document.getElementById('filterButton');
+    const contactTable = document.querySelector('.contact-table tbody');
+    const noResultsMessage = document.getElementById('noResults');
     const resultsCounter = document.getElementById('resultsCounter');
-    const noResultsDiv = document.getElementById('noResults');
-    const tables = document.querySelectorAll('.contact-table');
-    const allStarIcons = document.querySelectorAll('.star-icon');
 
-    // --- STATE MANAGEMENT ---
-    const STORAGE_KEY = 'campusji_starred_contacts';
-    let isShowingStarred = false; // Filter state for starred contacts
+    const starredContacts = new Set(JSON.parse(localStorage.getItem('starredContacts')) || []);
 
-    // --- CORE FUNCTIONS ---
-
-    // Creates a unique ID for a contact to use in localStorage
+    // Function to get a unique identifier for a contact row
     const getContactId = (row) => {
-        const name = row.querySelector('.contact-name').innerText.replace('☆', '').replace('★', '').trim();
+        const nameSpan = row.querySelector('.contact-name span:first-of-type');
+        const name = nameSpan ? nameSpan.innerText.trim() : '';
         const profession = row.querySelector('.contact-profession').innerText.trim();
         return `${name}-${profession}`;
     };
 
-    // Loads which contacts are starred from the browser's local storage
-    const loadStarredStatus = () => {
-        const starredContacts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-        allRows.forEach(row => {
-            const contactId = getContactId(row);
-            if (starredContacts[contactId]) {
-                const star = row.querySelector('.star-icon');
-                star.classList.add('starred');
-                star.textContent = '★';
+    // Render stars on page load
+    const renderStars = () => {
+        document.querySelectorAll('.contact-row').forEach(row => {
+            const id = getContactId(row);
+            const starIcon = row.querySelector('.star-icon');
+            if (starredContacts.has(id)) {
+                starIcon.classList.add('starred');
+                starIcon.innerHTML = '★'; // Filled star
+            } else {
+                starIcon.classList.remove('starred');
+                starIcon.innerHTML = '☆'; // Empty star
             }
         });
     };
 
-    // Saves the current set of starred contacts to local storage
-    const saveStarredStatus = () => {
-        const starredContacts = {};
-        document.querySelectorAll('.star-icon.starred').forEach(star => {
-            const contactId = getContactId(star.closest('.contact-row'));
-            starredContacts[contactId] = true;
-        });
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(starredContacts));
+    // Update results counter
+    const updateResultsCounter = (count) => {
+        resultsCounter.textContent = `Showing ${count} contacts.`;
     };
 
-    // Master function to filter and display contacts based on all active criteria
-    const filterAndDisplayContacts = () => {
-        const searchTerm = searchInput.value.toLowerCase().trim();
+    // Filter and search logic
+    const filterAndSearch = () => {
+        const query = searchInput.value.toLowerCase();
+        const showStarredOnly = filterButton.classList.contains('active');
         let visibleCount = 0;
 
-        // 1. Filter individual rows
-        allRows.forEach(row => {
-            const isStarred = row.querySelector('.star-icon').classList.contains('starred');
-            const rowText = row.textContent.toLowerCase();
+        document.querySelectorAll('.contact-row').forEach(row => {
+            const rowText = row.innerText.toLowerCase();
+            const id = getContactId(row);
+            const isStarred = starredContacts.has(id);
+            const matchesSearch = rowText.includes(query);
 
-            const matchesSearch = searchTerm === '' || rowText.includes(searchTerm);
-            const matchesStarredFilter = !isShowingStarred || isStarred;
-
-            if (matchesSearch && matchesStarredFilter) {
-                row.style.display = ''; // Use default table display
+            if ((!showStarredOnly || isStarred) && matchesSearch) {
+                row.classList.remove('hidden');
                 visibleCount++;
             } else {
-                row.style.display = 'none';
+                row.classList.add('hidden');
             }
         });
 
-        // 2. Update the results counter message
-        resultsCounter.textContent = `Showing ${visibleCount} of ${allRows.length} contacts`;
-        noResultsDiv.style.display = visibleCount === 0 ? 'block' : 'none';
-
-        // 3. Hide empty table sections (including headers)
-        tables.forEach(table => {
-            const body = table.querySelector('tbody');
-            if (body) {
-                const hasVisibleRows = Array.from(body.querySelectorAll('.contact-row')).some(r => r.style.display !== 'none');
-                let header = body.previousElementSibling;
-                while (header && header.tagName === 'THEAD') {
-                    header.style.display = hasVisibleRows ? '' : 'none';
-                    header = header.previousElementSibling;
+        // Hide or show category headers based on visible rows
+        document.querySelectorAll('.category-header').forEach(header => {
+            const nextRow = header.nextElementSibling;
+            if (nextRow && !nextRow.classList.contains('hidden') && nextRow.classList.contains('table-header')) {
+                // Check if there are any visible rows in this category
+                let hasVisibleRows = false;
+                let currentRow = nextRow.nextElementSibling;
+                while (currentRow && !currentRow.classList.contains('category-header')) {
+                    if (!currentRow.classList.contains('hidden')) {
+                        hasVisibleRows = true;
+                        break;
+                    }
+                    currentRow = currentRow.nextElementSibling;
                 }
+                header.style.display = hasVisibleRows ? '' : 'none';
             }
         });
+
+        if (visibleCount === 0) {
+            noResultsMessage.style.display = 'block';
+            resultsCounter.style.display = 'none';
+        } else {
+            noResultsMessage.style.display = 'none';
+            resultsCounter.style.display = 'block';
+        }
+
+        updateResultsCounter(visibleCount);
     };
 
-    // --- EVENT LISTENERS ---
-
-    // When a star icon is clicked
-    allStarIcons.forEach(star => {
-        star.addEventListener('click', (event) => {
-            event.stopPropagation();
-            star.classList.toggle('starred');
-            star.textContent = star.classList.contains('starred') ? '★' : '☆';
-            saveStarredStatus();
-            filterAndDisplayContacts(); // Re-apply filters instantly
-        });
-    });
-
-    // When the "Show Starred" button is clicked
-    showStarredButton.addEventListener('click', () => {
-        isShowingStarred = !isShowingStarred; // Toggle the filter state
-        if (isShowingStarred) {
-            showStarredButton.textContent = 'Show All';
-            showStarredButton.classList.add('active');
-        } else {
-            showStarredButton.textContent = 'Show Starred ★';
-            showStarredButton.classList.remove('active');
-        }
-        filterAndDisplayContacts();
-    });
-
-    // Search and Clear button actions
-    searchButton.addEventListener('click', filterAndDisplayContacts);
-    searchInput.addEventListener('keyup', filterAndDisplayContacts); // Live search
-    clearButton.addEventListener('click', () => {
+    // Event listeners
+    searchButton.addEventListener('click', filterAndSearch);
+    clearSearchButton.addEventListener('click', () => {
         searchInput.value = '';
-        filterAndDisplayContacts();
+        filterAndSearch();
+    });
+    searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            filterAndSearch();
+        }
     });
 
-    // --- INITIALIZATION ---
-    loadStarredStatus();
-    filterAndDisplayContacts(); // Run once on page load
+    filterButton.addEventListener('click', () => {
+        filterButton.classList.toggle('active');
+        filterAndSearch();
+    });
+
+    contactTable.addEventListener('click', (e) => {
+        const starIcon = e.target.closest('.star-icon');
+        if (starIcon) {
+            const row = e.target.closest('.contact-row');
+            const id = getContactId(row);
+            if (starredContacts.has(id)) {
+                starredContacts.delete(id);
+            } else {
+                starredContacts.add(id);
+            }
+            localStorage.setItem('starredContacts', JSON.stringify(Array.from(starredContacts)));
+            renderStars();
+            filterAndSearch(); // Re-run filter to hide/show contacts if filter is active
+        }
+    });
+
+    // Initial render
+    renderStars();
+    filterAndSearch();
 });
