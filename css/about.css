@@ -1,3 +1,5 @@
+/* ABOUT US PAGE STYLES */
+
 /* General container for the team page */
 .team-page {
     max-width: 1200px;
@@ -16,89 +18,298 @@
     font-weight: bold;
 }
 
-/* Grid for team members */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    padding: 20px;
+/* Floating Shapes Section */
+.floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* Individual team member card */
-.team-member {
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 20s infinite linear;
+}
+
+/* Page Title and Subtitle */
+.page-title {
     text-align: center;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #081F5C;
+    margin-bottom: 1rem;
+    position: relative;
+    background: linear-gradient(135deg, #081F5C, #334EAC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Vision & Mission Section */
+.vision-mission-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem 2rem;
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(8, 31, 92, 0.1);
+    transition: all 0.4s ease;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-card-icon {
+    font-size: 3rem;
+    color: #334EAC;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.info-card h2 {
+    color: #081F5C;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.info-card p {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Team Section */
+.team-section {
+    padding: 3rem 0;
+}
+
+.team-section h2 {
+    color: #081F5C;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.team-intro {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Team Grid Layout */
+.team-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
 }
 
-.team-member:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+.team-row {
+    display: grid;
+    gap: 2rem;
+    width: 100%;
 }
 
-/* Member photo container */
-.member-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin: 0 auto 15px;
+.team-row.four-members {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1000px;
+}
+
+.team-row.three-members {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 750px;
+    justify-self: center;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
     overflow: hidden;
-    border: 4px solid #f2f2f2;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.member-photo {
+    width: 100%;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px 25px 0 0;
 }
 
 .member-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: top; /* This is the critical fix for the cropping issue */
     transition: transform 0.4s ease;
 }
 
-.member-photo img:hover {
-    transform: scale(1.1);
+.linkedin-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #0A66C2, #004182);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: white;
+    text-decoration: none;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    z-index: 10;
 }
 
-/* Member name and role */
+.member-info {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .member-name {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
+    color: #081F5C;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
-.member-role {
+.member-id {
+    color: #7096D1;
     font-size: 1rem;
-    color: #666;
-    margin-top: auto;
+    margin-bottom: 1rem;
+    font-weight: 500;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .team-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+.member-description {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Values Section */
+.values-section {
+    margin: 5rem 0;
+    text-align: center;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.value-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.value-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #081F5C, #334EAC);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+}
+
+.value-card h3 {
+    color: #081F5C;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .team-row.four-members,
+    .team-row.three-members {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
     }
-    
-    .team-member {
-        padding: 15px;
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .team-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .team-row.four-members,
+    .team-row.three-members {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+    }
+
+    .vision-mission-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .info-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .values-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .member-photo {
-        width: 120px;
-        height: 120px;
-    }
-
-    .member-name {
-        font-size: 1.1rem;
-    }
-
-    .member-role {
-        font-size: 0.9rem;
+        height: 250px;
     }
 }
