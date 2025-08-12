@@ -1,42 +1,14 @@
 /* ABOUT US PAGE STYLES */
 
-/* General container for the team page */
-.team-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    font-family: Arial, sans-serif;
+/* --- General Structure & Typography --- */
+
+body {
+    font-family: 'Georgia', serif;
     color: #333;
+    line-height: 1.6;
+    background-color: #f7f9fc;
 }
 
-/* Heading styles */
-.section-heading {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #081F5C;
-    margin-bottom: 2rem;
-    font-weight: bold;
-}
-
-/* Floating Shapes Section */
-.floating-shapes {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.shape {
-    position: absolute;
-    opacity: 0.1;
-    animation: float 20s infinite linear;
-}
-
-/* Page Title and Subtitle */
 .page-title {
     text-align: center;
     font-size: 3.5rem;
@@ -60,7 +32,27 @@
     margin-right: auto;
 }
 
-/* Vision & Mission Section */
+/* --- Floating Decorative Shapes --- */
+
+.floating-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 20s infinite linear;
+}
+
+/* --- Vision & Mission Section --- */
+
 .vision-mission-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -78,13 +70,6 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.info-card-icon {
-    font-size: 3rem;
-    color: #334EAC;
-    margin-bottom: 1.5rem;
-    display: block;
-}
-
 .info-card h2 {
     color: #081F5C;
     font-size: 2rem;
@@ -98,10 +83,7 @@
     line-height: 1.8;
 }
 
-/* Team Section */
-.team-section {
-    padding: 3rem 0;
-}
+/* --- Team Section --- */
 
 .team-section h2 {
     color: #081F5C;
@@ -121,7 +103,6 @@
     margin-right: auto;
 }
 
-/* Team Grid Layout */
 .team-container {
     display: flex;
     flex-direction: column;
@@ -133,17 +114,16 @@
     display: grid;
     gap: 2rem;
     width: 100%;
+    max-width: 1100px;
 }
 
 .team-row.four-members {
     grid-template-columns: repeat(4, 1fr);
-    max-width: 1000px;
 }
 
 .team-row.three-members {
     grid-template-columns: repeat(3, 1fr);
-    max-width: 750px;
-    justify-self: center;
+    max-width: 800px;
 }
 
 .team-member {
@@ -172,7 +152,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top; /* This is the critical fix for the cropping issue */
+    object-position: top;
     transition: transform 0.4s ease;
 }
 
@@ -222,7 +202,8 @@
     line-height: 1.6;
 }
 
-/* Values Section */
+/* --- Values Section --- */
+
 .values-section {
     margin: 5rem 0;
     text-align: center;
@@ -267,7 +248,8 @@
     font-weight: 700;
 }
 
-/* Responsive Design */
+/* --- Responsive Design for Mobile --- */
+
 @media (max-width: 1024px) {
     .team-row.four-members,
     .team-row.three-members {
@@ -281,8 +263,16 @@
         font-size: 2.5rem;
     }
 
+    .subtitle {
+        font-size: 1rem;
+    }
+
     .team-section h2 {
         font-size: 2.2rem;
+    }
+
+    .team-intro {
+        font-size: 1rem;
     }
 
     .team-row.four-members,
