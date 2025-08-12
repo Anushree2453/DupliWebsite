@@ -10,8 +10,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuList = document.getElementById("mess-menu-list");
     if (!menuList) return;
 
-    const today = new Date().getDay();
-    const dayOfWeek = today === 0 ? 7 : today;
+    const dayIndex = new Date().getDay();
+    const dayOfWeek = dayIndex === 0 ? 7 : dayIndex;
+
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const dayName = days[dayIndex];
 
     const { data, error } = await supabase
       .from("mess_menu")
@@ -26,6 +37,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (data && data.length > 0) {
       menuList.innerHTML = "";
+
+      const dayElement = document.createElement("li");
+      dayElement.textContent = dayName;
+      dayElement.style.fontWeight = "bold";
+      dayElement.style.textAlign = "center";
+      dayElement.style.fontSize = "1.1em";
+      dayElement.style.marginBottom = "10px";
+      menuList.appendChild(dayElement);
+
       data.forEach((item) => {
         const menuItem = document.createElement("li");
         menuItem.innerHTML = `<strong>${item.meal_time}</strong><br>${item.food_items}`;
