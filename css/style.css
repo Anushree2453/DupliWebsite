@@ -118,7 +118,7 @@
 /* Three Column Section */
 .three-column-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin: 3rem 0;
 }
@@ -131,7 +131,7 @@
 
 .weather-card {
     flex: 1;
-    min-height: 200px;
+    min-height: 180px;
 }
 
 .lost-found-card {
@@ -156,7 +156,7 @@
 
 .column-card h3 {
     color: #081F5C;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-size: 1.3rem;
     border-bottom: 3px solid #7096D1;
     padding-bottom: 0.5rem;
@@ -164,12 +164,10 @@
 
 .mess-menu-items {
     list-style: none;
-    margin-top: 0;
-    padding-left: 0;
 }
 
 .mess-menu-items li {
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
     border-bottom: 1px solid #EDF1F6;
     color: #334EAC;
 }
