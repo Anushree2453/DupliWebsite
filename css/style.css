@@ -171,6 +171,10 @@
     color: #334EAC;
 }
 
+.mess-menu-items li:first-child {
+    padding-top: 0;
+}
+
 .bulletin-item {
     background: #F2F0DE;
     padding: 1rem;
